@@ -10,7 +10,6 @@ export const logout = async () => {
     });
     if ((res.data.status = 'success')) {
       location.reload();
-      return true;
     }
   } catch (err) {
     showAlert('error', 'Something when wrong 😓');

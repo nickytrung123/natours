@@ -1,7 +1,7 @@
-const User = require('./../models/userModel');
-const catchAsync = require('./../utils/catchAsync');
+const User = require('../models/userModel');
+const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
-const AppError = require('./../utils/appError');
+const AppError = require('../utils/appError');
 // const APIFeatures = require('./../utils/apiFeatures');
 
 // Adding me Endpoint
@@ -39,6 +39,8 @@ const filterObj = (obj, ...allowedFields) => {
   return newObj;
 };
 exports.updateInfo = catchAsync(async (req, res, next) => {
+  console.log(req.file);
+  console.log(req.body);
   // 1) Create error if user POSTs password data
   if (req.body.password || req.body.passwordConfirm)
     return next(
