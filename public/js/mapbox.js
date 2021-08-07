@@ -8,7 +8,7 @@ export const displayMap = (locations) => {
     style: 'mapbox://styles/nickytrung123/ckrsurohn26ap18mnh1n83vn3',
     scrollZoom: false,
     // center: [-118.113491, 34.111745],
-    // zoom: 10,
+    zoom: 10,
     // interactive: false
   });
 

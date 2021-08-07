@@ -37,6 +37,7 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   photo: {
     type: String,
+    default: 'default.jpg',
   },
   role: {
     type: String,
