@@ -26,6 +26,7 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // 1) GLOBAL MIDDLEWARES
+
 // Cross-Origin Resource Sharing
 app.use(cors());
 // Access-Control-Allow-Origin
@@ -59,8 +60,8 @@ app.use('/api', limiter);
 // app.use(express.raw({ type: 'application/json' }));
 
 // Body parse, reading data from body into req.body
-app.use(express.json({ limit: '10kb', extended: true }));
-app.use(express.urlencoded({ limit: '10kb', extended: true }));
+app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Data sanitization against NoSQL query injection
@@ -86,14 +87,13 @@ app.use(
 app.use(compression());
 
 // Test middleware
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     'Content-Security-Policy',
-//     "script-src  'self' api.mapbox.com",
-//     "script-src-elem 'self' api.mapbox.com"
-//   );
-//   next();
-// });
+app.all('*', (req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy',
+    "connect-src 'self' https://api.stripe.com; frame-src 'self' https://js.stripe.com - https://hooks.stripe.com; script-src 'self' https://js.stripe.com;"
+  );
+  next();
+});
 
 // app.use((req, res, next) => {
 //   req.requestTime = new Date().toISOString();
