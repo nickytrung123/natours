@@ -9219,7 +9219,10 @@ if (formLogin) {
 }
 
 if (logOutBtn) {
-  logOutBtn.addEventListener('click', _logout.logout);
+  logOutBtn.addEventListener('click', function () {
+    console.log(logOutBtn);
+    (0, _logout.logout)();
+  });
 }
 
 if (formUpdateInfo) {
@@ -9306,7 +9309,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63485" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49937" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

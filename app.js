@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const AppError = require('./utils/appError');
@@ -44,9 +45,12 @@ app.use('/api', limiter);
 
 // Body parse, reading data from body into req.body
 //{ limit: '10kb' }
-app.use(express.json({ limit: '10kb' }));
-app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+app.use(express.json({ limit: '10kb', extended: true }));
+app.use(express.urlencoded({ limit: '10kb', extended: true }));
 app.use(cookieParser());
+
+// CORS
+app.use(cors());
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
@@ -69,20 +73,20 @@ app.use(
 );
 
 // Test middleware
-app.use((req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "script-src  'self' api.mapbox.com",
-    "script-src-elem 'self' api.mapbox.com"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     'Content-Security-Policy',
+//     "script-src  'self' api.mapbox.com",
+//     "script-src-elem 'self' api.mapbox.com"
+//   );
+//   next();
+// });
 
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  // console.log(req.cookies);
-  next();
-});
+// app.use((req, res, next) => {
+//   req.requestTime = new Date().toISOString();
+//   // console.log(req.cookies);
+//   next();
+// });
 
 // 2) ROUTE HANDLERS
 

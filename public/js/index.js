@@ -27,7 +27,10 @@ if (formLogin) {
 }
 
 if (logOutBtn) {
-  logOutBtn.addEventListener('click', logout);
+  logOutBtn.addEventListener('click', () => {
+    console.log(logOutBtn);
+    logout();
+  });
 }
 
 if (formUpdateInfo) {
