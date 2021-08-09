@@ -22,8 +22,8 @@ const app = express();
 
 app.enable('trust proxy');
 
-app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 // 1) GLOBAL MIDDLEWARES
 
@@ -42,7 +42,11 @@ app.options('*', cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // SET security HTTP headers
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 
 // Development loggin
 if (process.env.NODE_ENV === 'development') {
@@ -60,7 +64,7 @@ app.use('/api', limiter);
 // app.use(express.raw({ type: 'application/json' }));
 
 // Body parse, reading data from body into req.body
-app.use(express.json({ extended: true }));
+app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
@@ -87,13 +91,6 @@ app.use(
 app.use(compression());
 
 // Test middleware
-app.all('*', (req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "connect-src 'self' https://api.stripe.com; frame-src 'self' https://js.stripe.com - https://hooks.stripe.com; script-src 'self' https://js.stripe.com;"
-  );
-  next();
-});
 
 // app.use((req, res, next) => {
 //   req.requestTime = new Date().toISOString();

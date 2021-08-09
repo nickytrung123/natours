@@ -6,6 +6,7 @@ import { login } from './login';
 import { logout } from './logout';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
+import { displayMap } from './mapBox';
 
 const mapBox = document.getElementById('map');
 const formLogin = document.querySelector('.form--login');

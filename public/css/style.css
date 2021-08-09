@@ -515,7 +515,7 @@ body {
 
 .section-map {
   position: relative;
-  height: 80rem;
+  height: 86rem;
   margin-top: calc(0px - var(--section-rotate));
 }
 
@@ -548,8 +548,8 @@ body {
 }
 
 .section-reviews {
-  margin-top: calc(128px - var(--section-rotate));
-  /* padding: calc(5rem + var(--section-rotate)) 0; */
+  margin-top: calc(0px - var(--section-rotate));
+  /* padding: calc(5rem + var(--section-rotate)); */
   position: relative;
   z-index: 1000;
   background: -webkit-gradient(
