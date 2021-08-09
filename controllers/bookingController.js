@@ -4,6 +4,12 @@ const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 
+exports.createBooking = factory.createOne(Booking);
+exports.getAllBooking = factory.getAll(Booking);
+exports.getBooking = factory.getOne(Booking);
+exports.updateBooking = factory.updateOne(Booking);
+exports.deleteBooking = factory.deleteOne(Booking);
+
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // 1) Get the currently booked tour session
   const tour = await Tour.findById(req.params.tourId);
@@ -17,6 +23,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
     customer_email: req.user.email,
     client_reference_id: req.params.tourId,
+    mode: 'payment',
     line_items: [
       {
         name: `${tour.name} Tour`,
@@ -39,9 +46,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 exports.createBookingCheckout = catchAsync(async (req, res, next) => {
   // everyone can make bookings without paying
   const { tour, user, price } = req.query;
-
   if (!tour && !user && !price) return next();
-
   await Booking.create({ tour, user, price });
-  res.redirect(req.originalUrl.split('?')[0]);
+  res.redirect(303, req.originalUrl.split('?')[0]);
 });

@@ -6,9 +6,9 @@ const factory = require('./handlerFactory');
 const AppError = require('../utils/appError');
 // const APIFeatures = require('./../utils/apiFeatures');
 
+exports.createTour = factory.createOne(Tour);
 exports.getAllTours = factory.getAll(Tour);
 exports.getTour = factory.getOne(Tour, { path: 'reviews' });
-exports.createTour = factory.createOne(Tour);
 exports.updateTour = factory.updateOne(Tour);
 exports.deleteTour = factory.deleteOne(Tour);
 

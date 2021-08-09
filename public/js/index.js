@@ -1,7 +1,7 @@
 /* eslint-disable */
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import { displayMap } from './mapbox';
+// import '@babel/polyfill';
 import { login } from './login';
 import { logout } from './logout';
 import { updateSettings } from './updateSettings';
