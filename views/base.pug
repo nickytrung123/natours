@@ -13,7 +13,7 @@ html(lang='en')
             script(defer, src='https://js.stripe.com/v3/')
             script(defer, src='/js/dist/bundle.js')
         
-    body
+    body(data-alert=`${alert ? alert : ''}`)
         //HEADER
         include _header
 

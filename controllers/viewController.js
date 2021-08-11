@@ -62,3 +62,9 @@ exports.updateUserData = (req, res, next) => {
     title: 'Your account',
   });
 };
+
+exports.alerts = (req, res, next) => {
+  const { alert } = req.body;
+  if (alert === 'booking') res.locals.alert = 'Your booking was seccessful!';
+  next();
+};
