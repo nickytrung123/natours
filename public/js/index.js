@@ -10,13 +10,19 @@ import { displayMap } from './mapbox';
 import { showAlert } from './alert';
 
 const mapBox = document.getElementById('map');
+
 const formLogin = document.querySelector('.form--login');
 const formUpdateInfo = document.querySelector('.form-user-info');
 const formUpdatePassword = document.querySelector('.form-user-password');
+
 const logOutBtn = document.querySelector('.nav__el--logout');
 const bookBtn = document.getElementById('book-tour');
 
+const alertMessage = document.querySelector('body').dataset.alert;
+
 // DELEGATION
+if (alertMessage) showAlert('success', alertMessage, 20);
+
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations);
   displayMap(locations);
@@ -75,6 +81,3 @@ if (bookBtn)
     const { tourId } = e.target.dataset;
     bookTour(tourId);
   });
-
-const alertMessage = document.querySelector('body').dataset.alert;
-if (alert) showAlert('success', alertMessage, 20);
