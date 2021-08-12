@@ -2,6 +2,7 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 // import '@babel/polyfill';
+import { signUp } from './signUp';
 import { login } from './login';
 import { logout } from './logout';
 import { updateSettings } from './updateSettings';
@@ -12,6 +13,7 @@ import { showAlert } from './alert';
 const mapBox = document.getElementById('map');
 
 const formLogin = document.querySelector('.form--login');
+const formSignUp = document.querySelector('.form--signup');
 const formUpdateInfo = document.querySelector('.form-user-info');
 const formUpdatePassword = document.querySelector('.form-user-password');
 
@@ -26,6 +28,19 @@ if (alertMessage) showAlert('success', alertMessage, 20);
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations);
   displayMap(locations);
+}
+
+if (formSignUp) {
+  formSignUp.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+
+    signUp(name, email, password, passwordConfirm);
+  });
 }
 
 if (formLogin) {

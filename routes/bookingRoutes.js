@@ -2,9 +2,7 @@ const express = require('express');
 const bookingController = require('../controllers/bookingController');
 const authController = require('../controllers/authController');
 
-// POST /tours/234asd/reviews
-// --> /reviews
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router.use(authController.protect);
 

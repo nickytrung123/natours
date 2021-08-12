@@ -82,3 +82,7 @@ exports.webhookCheckout = catchAsync(async (req, res, next) => {
 
   res.json({ received: true });
 });
+
+// exports.findBooking = catchAsync(async (req, res, next) => {
+//   const booking = Booking.findById()
+// })
