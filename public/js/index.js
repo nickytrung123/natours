@@ -41,8 +41,6 @@ if (formSignUp) {
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('passwordConfirm').value;
 
-    e.target.textContent = 'Processing...';
-
     signUp(name, email, password, passwordConfirm);
   });
 }
@@ -50,8 +48,6 @@ if (formSignUp) {
 if (formLogin) {
   formLogin.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    e.target.textContent = 'Processing...';
 
     login(email.value, password.value);
   });
@@ -105,7 +101,6 @@ if (bookBtn)
 
 if (deleteAccountBtn) {
   deleteAccountBtn.addEventListener('click', (e) => {
-    deleteAccountBtn.textContent = 'Processing...';
     deleteAccount();
   });
 }
