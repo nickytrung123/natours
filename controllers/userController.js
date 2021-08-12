@@ -30,9 +30,9 @@ exports.getMe = (req, res, next) => {
 exports.deleteActUser = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(req.user.id, { active: false });
 
-  res.status(204).json({
+  res.status(200).json({
     status: 'success',
-    data: null,
+    // data: null,
   });
 });
 
