@@ -5,6 +5,7 @@ import 'regenerator-runtime/runtime';
 import { signUp } from './signUp';
 import { login } from './login';
 import { logout } from './logout';
+import { deleteAccount } from './deleteAccount';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
 import { displayMap } from './mapbox';
@@ -19,6 +20,7 @@ const formUpdatePassword = document.querySelector('.form-user-password');
 
 const logOutBtn = document.querySelector('.nav__el--logout');
 const bookBtn = document.getElementById('book-tour');
+const deleteAccountBtn = document.querySelector('.btn--delete-account');
 
 const alertMessage = document.querySelector('body').dataset.alert;
 
@@ -39,6 +41,8 @@ if (formSignUp) {
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('passwordConfirm').value;
 
+    e.target.textContent = 'Processing...';
+
     signUp(name, email, password, passwordConfirm);
   });
 }
@@ -46,6 +50,8 @@ if (formSignUp) {
 if (formLogin) {
   formLogin.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    e.target.textContent = 'Processing...';
 
     login(email.value, password.value);
   });
@@ -96,3 +102,10 @@ if (bookBtn)
     const { tourId } = e.target.dataset;
     bookTour(tourId);
   });
+
+if (deleteAccountBtn) {
+  deleteAccountBtn.addEventListener('click', (e) => {
+    e.target.textContent = 'Processing...';
+    deleteAccount;
+  });
+}

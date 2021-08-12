@@ -49,6 +49,12 @@ exports.getAccount = (req, res, next) => {
   });
 };
 
+exports.getDeleteAccount = (req, res, next) => {
+  res.status(200).render('deleteAccount', {
+    title: 'Delete your account',
+  });
+};
+
 exports.getMyTours = catchAsync(async (req, res, next) => {
   // 1) Find all bookings
   const bookings = await Booking.find({ user: req.user.id });
