@@ -105,7 +105,7 @@ if (bookBtn)
 
 if (deleteAccountBtn) {
   deleteAccountBtn.addEventListener('click', (e) => {
-    e.target.textContent = 'Processing...';
-    deleteAccount;
+    deleteAccountBtn.textContent = 'Processing...';
+    deleteAccount();
   });
 }

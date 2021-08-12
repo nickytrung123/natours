@@ -24,5 +24,8 @@ export const signUp = async (name, email, password, passwordConfirm) => {
     }
   } catch (err) {
     showAlert('error', err.response.data.message);
+    window.setTimeout(() => {
+      location.assign('/signUp');
+    }, 1000);
   }
 };
