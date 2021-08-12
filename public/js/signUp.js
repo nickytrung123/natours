@@ -20,7 +20,7 @@ export const signUp = async (name, email, password, passwordConfirm) => {
       showAlert('success', 'SignUp successful, check your email ✔');
       window.setTimeout(() => {
         location.assign('/');
-      }, 1500);
+      }, 1000);
     }
   } catch (err) {
     showAlert('error', err.response.data.message);
